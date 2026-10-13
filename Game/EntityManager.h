@@ -19,8 +19,9 @@ namespace game
     public:
         void Update(const core::Vector2 &moveDir, EntityID playerID);
 
-        int GetLastID()
+        int GetLastID() const
         {
+
             Entity *it = m_entities.back().get();
             return it->GetID();
         }

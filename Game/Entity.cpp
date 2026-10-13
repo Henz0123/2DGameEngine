@@ -3,4 +3,3 @@
 //
 
 #include "Entity.h"
-EntityID game::Entity::idCounter = 0;
