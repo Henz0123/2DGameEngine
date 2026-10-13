@@ -17,7 +17,7 @@ namespace game
         std::vector<std::unique_ptr<Entity>> m_entities;
 
     public:
-        void Update(const core::Vector2 &moveDir, EntityID playerID);
+        void Update(float dt);
 
         int GetLastID() const
         {
@@ -31,6 +31,14 @@ namespace game
         Entity* GetEntity(EntityID id) const;
 
         const std::vector<std::unique_ptr<Entity>> &GetEntities() const { return m_entities; }
+
+        EntityID GetPlayerID() const
+        {
+            return m_playerID;
+        }
+
+    private:
+        EntityID m_playerID;
     };
 }
 

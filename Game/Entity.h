@@ -24,9 +24,14 @@ namespace game
 
         const core::CharacterType GetCharType() const { return m_charType; }
 
-        virtual void Update(const core::Vector2 &moveDirection, float speed) = 0;
+        virtual void Update(float dt) = 0;
 
         EntityID GetID() const { return m_id; }
+
+        const core::Transform& GetTransform() const
+        {
+            return m_transform;
+        }
 
     protected:
         core::Transform m_transform;

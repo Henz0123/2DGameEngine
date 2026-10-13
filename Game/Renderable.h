@@ -12,7 +12,7 @@ namespace game
     public:
         virtual ~Renderable() = default;
         virtual const core::Sprite& GetSprite() const = 0;
-        virtual void SetSprite(Texture2D texture, const core::Transform& transform) = 0;
+        virtual void SetSprite(const char* filename) = 0;
         virtual const bool &IsFacingLeft() const = 0;
     };
 }

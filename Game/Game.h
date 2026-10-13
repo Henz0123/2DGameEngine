@@ -19,13 +19,15 @@ namespace game
             return m_entityManager.get();
         }
 
-        void Update(const core::Vector2 &moveDirection);
+        void Update(const core::Vector2 &moveDirection, float deltaTime);
 
         void CreatePlayer();
+
+
     private:
         Player* m_player;
         std::unique_ptr<EntityManager> m_entityManager;
-        EntityID m_playerID;
+
     };
 }
 

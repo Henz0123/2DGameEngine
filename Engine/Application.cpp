@@ -28,8 +28,10 @@ void engine::Application::Run()
 
 void engine::Application::Update()
 {
+    float deltaTime = GetFrameTime();
+    TraceLog(LOG_INFO, "DeltaTime: %f", deltaTime);
     const core::Vector2 moveDirection = m_input.HandleInput();
-    m_game->Update(moveDirection);
+    m_game->Update(moveDirection, deltaTime);
 }
 
 void engine::Application::Draw()

@@ -17,7 +17,7 @@ namespace engine
         void Draw(const game::Game& game);
 
     private:
-        void DrawPlayer(const game::Renderable& entity);
+        void DrawSprite(const game::Renderable& renderable, const core::Transform& transform);
     };
 }
 

@@ -13,16 +13,17 @@ void engine::Renderer::Draw(const game::Game &game)
     ClearBackground(BLACK);
     for (const auto& entity : entities) {
         if (auto* renderable = dynamic_cast<game::Renderable*>(entity.get()))
-            DrawPlayer(*renderable);
+            DrawSprite(*renderable, entity->GetTransform());
     }
 
     EndDrawing();
 }
 
-void engine::Renderer::DrawPlayer(const game::Renderable &entity)
+void engine::Renderer::DrawSprite(const game::Renderable& renderable, const core::Transform& transform)
 {
-    const auto &sprite = entity.GetSprite();
-    const auto &direction = entity.IsFacingLeft();
+    const auto &sprite = renderable.GetSprite();
+
+    const auto &direction = renderable.IsFacingLeft();
     Rectangle source{
             0.f,
             0.f,
@@ -30,11 +31,11 @@ void engine::Renderer::DrawPlayer(const game::Renderable &entity)
             static_cast<float>(sprite.texture.height)
     };
     Rectangle destination{
-            sprite.transform.position.x,
-            sprite.transform.position.y,
-            sprite.transform.size.x,
-            sprite.transform.size.y
+            transform.position.x,
+            transform.position.y,
+           transform.size.x,
+           transform.size.y
     };
     DrawTexturePro(sprite.texture, source, destination, {0.f, 0.f},
-                   sprite.transform.rotation, WHITE);
+                  transform.rotation, WHITE);
 }

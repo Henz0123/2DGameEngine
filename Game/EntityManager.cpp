@@ -3,18 +3,24 @@
 //
 
 #include "EntityManager.h"
-void game::EntityManager::Update(const core::Vector2 &moveDir, EntityID playerID)
+
+#include "Game.h"
+
+void game::EntityManager::Update(float dt)
 {
+
     for (auto & entity : m_entities) {
-        if (entity->GetID() == playerID) {
-            entity->Update(moveDir, 5);
+        if (entity->GetID() == m_playerID) {
+            entity->Update(dt);
         }
     }
 }
 
 void game::EntityManager::CreatePlayer()
 {
+
     m_entities.push_back(std::make_unique<Player>());
+    m_playerID = GetLastID();
 }
 void game::EntityManager::CreateEnemy() {}
 

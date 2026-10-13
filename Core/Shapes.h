@@ -18,12 +18,10 @@ namespace core
 
     struct Shape {
         RenderType renderType;
-        Transform transform;
     };
 
     struct Sprite {
         Texture2D texture = {};
-        Transform transform{};
     };
 }
 

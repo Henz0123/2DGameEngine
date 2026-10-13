@@ -8,17 +8,18 @@
 game::Game::Game() : m_entityManager(std::make_unique<EntityManager>())
 {
     CreatePlayer();
-    m_player->SetSprite(LoadTexture("../Assets/megaman-8bit.png"), {{400, 400}, 0, {40, 40}});
+    m_player->SetSprite("../Assets/megaman-8bit.png");
 }
 
-void game::Game::Update(const core::Vector2 &moveDirection)
+void game::Game::Update(const core::Vector2 &moveDirection, float deltaTime)
 {
-   m_entityManager->Update(moveDirection, m_playerID);
+    m_player->SetMoveDirection(moveDirection);
+   m_entityManager->Update(deltaTime);
 }
 
 void game::Game::CreatePlayer()
 {
     m_entityManager->CreatePlayer();
-    m_playerID = m_entityManager->GetLastID();
-    m_player = dynamic_cast<Player *>(m_entityManager->GetEntity(m_playerID));
+    EntityID playerID = m_entityManager->GetPlayerID();
+    m_player = dynamic_cast<Player *>(m_entityManager->GetEntity(playerID));
 }

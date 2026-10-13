@@ -22,7 +22,7 @@ namespace game
     public:
         Player() : Entity(core::CharacterType::Player)
         {
-            m_transform = {{0.f, 0.f}, 0, {0.f, 0.f}};
+            m_transform = {{0.f, 0.f}, 0, {80.f, 80.f}};
         }
         ;
         ~Player() override
@@ -30,13 +30,12 @@ namespace game
             UnloadTexture(m_sprite.texture);
         }
 
-        void Update(const core::Vector2 &moveDir, float speed) override;
+        void Update(float dt) override;
         void Move(const core::Vector2 &moveDirection, float speed);
 
-        void SetSprite(Texture2D texture, const core::Transform& transform) override
+        void SetSprite(const char* filename) override
         {
-            m_sprite.transform = transform;
-            m_sprite.texture = texture;
+            m_sprite.texture = LoadTexture(filename);
         }
 
 
@@ -49,10 +48,13 @@ namespace game
         {
             return m_isMovingLeft;
         }
+
+        void SetMoveDirection(const core::Vector2& moveDir);
     private:
         core::Sprite m_sprite;
         bool m_isMovingLeft = false;
-
+        core::Vector2 m_moveDir{.x = 0.f, .y = 0.f};
+        float m_speed = 300.f;
     };
 }
 

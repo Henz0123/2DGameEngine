@@ -5,14 +5,14 @@
 #include "Player.h"
 
 
-void game::Player::Update(const core::Vector2 &moveDir, float speed)
+void game::Player::Update(float dt)
 {
-   Move(moveDir, speed);
+   Move(m_moveDir, m_speed * dt);
 }
 
 void game::Player::Move(const core::Vector2 &moveDirection, float speed)
 {
-    auto &[x, y] = m_sprite.transform.position;
+    auto &[x, y] = m_transform.position;
     x += moveDirection.x * speed;
     y += moveDirection.y * speed;
 
@@ -22,3 +22,7 @@ void game::Player::Move(const core::Vector2 &moveDirection, float speed)
         m_isMovingLeft = false;
 }
 
+void game::Player::SetMoveDirection(const core::Vector2 &moveDir)
+{
+    m_moveDir = moveDir;
+}
