@@ -8,7 +8,7 @@
 #include "../Game/Game.h"
 #include <memory>
 #include "Renderer.h"
-
+#include "../Editor/Editor.h"
 
 namespace engine
 {
@@ -24,6 +24,7 @@ namespace engine
         void Draw();
 
         std::unique_ptr<game::Game> m_game;
+        std::unique_ptr<editor::Editor> m_editor;
         Renderer m_renderer;
 
         Input m_input;

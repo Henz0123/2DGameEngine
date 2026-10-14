@@ -4,30 +4,36 @@
 
 #include "Renderer.h"
 #include "../Core/Constants.h"
+#include "../Editor/Editor.h"
 
-void engine::Renderer::Draw(const game::Game &game)
+void engine::Renderer::Draw(const game::Game *game, const editor::Editor &editor)
 {
-    const auto& entities = game.GetEntityManager()->GetEntities();
-
-    const auto& tilemap = game.GetTileMap();
-    const auto& tileset = game.GetTileset();
-
     BeginDrawing();
     ClearBackground(BLACK);
-    if (tilemap && tileset)
+    if (game)
     {
-        DrawTilemap(*tilemap, *tileset);
+        const auto &entities = game->GetEntityManager()->GetEntities();
+
+        const auto &tilemap = game->GetTileMap();
+        const auto &tileset = game->GetTileset();
+        if (tilemap && tileset)
+        {
+            DrawTilemap(*tilemap, *tileset);
+        }
+
+        for (const auto &entity: entities)
+        {
+            if (auto *renderable = dynamic_cast<game::Renderable *>(entity.get()))
+                DrawSprite(*renderable, entity->GetTransform());
+        }
     }
 
-    for (const auto& entity : entities) {
-        if (auto* renderable = dynamic_cast<game::Renderable*>(entity.get()))
-            DrawSprite(*renderable, entity->GetTransform());
-    }
+    editor.Draw(game != nullptr);
 
     EndDrawing();
 }
 
-void engine::Renderer::DrawSprite(const game::Renderable& renderable, const core::Transform& transform)
+void engine::Renderer::DrawSprite(const game::Renderable &renderable, const core::Transform &transform)
 {
     const auto &sprite = renderable.GetSprite();
 
@@ -41,17 +47,17 @@ void engine::Renderer::DrawSprite(const game::Renderable& renderable, const core
     Rectangle destination{
             transform.position.x,
             transform.position.y,
-           transform.size.x,
-           transform.size.y
+            transform.size.x,
+            transform.size.y
     };
     DrawTexturePro(sprite.texture, source, destination, {0.f, 0.f},
-                  transform.rotation, WHITE);
+                   transform.rotation, WHITE);
 }
 
 void engine::Renderer::DrawTilemap(const game::Tilemap &tilemap, const game::Tileset &tileset)
 {
-    const auto& tiles = tilemap.GetTiles();
-    const auto& origin = tilemap.GetOriginPoint();
+    const auto &tiles = tilemap.GetTiles();
+    const auto &origin = tilemap.GetOriginPoint();
 
     const int width = tilemap.GetWidth();
     const float drawSize = core::TILE_DRAW_SIZE;
@@ -59,7 +65,7 @@ void engine::Renderer::DrawTilemap(const game::Tilemap &tilemap, const game::Til
     for (std::size_t i = 0; i < tiles.size(); ++i)
     {
         int tileID = tiles[i];
-        const Rectangle* source = tileset.GetSourceRect(tileID);
+        const Rectangle *source = tileset.GetSourceRect(tileID);
 
         if (!source)
             continue;
@@ -68,19 +74,19 @@ void engine::Renderer::DrawTilemap(const game::Tilemap &tilemap, const game::Til
         int y = static_cast<int>(i / width);
 
         Rectangle destination{
-            origin.x + x * drawSize,
-            origin.y + y * drawSize,
-            drawSize,
-            drawSize
+                origin.x + x * drawSize,
+                origin.y + y * drawSize,
+                drawSize,
+                drawSize
         };
 
         DrawTexturePro(
-            tileset.GetTexture(),
-            *source,
-            destination,
-            {0.f, 0.f},
-            0.f,
-            WHITE
-        );
+                tileset.GetTexture(),
+                *source,
+                destination,
+                {0.f, 0.f},
+                0.f,
+                WHITE
+                );
     }
 }

@@ -8,7 +8,7 @@
 
 #include "../Game/Game.h"
 #include "../Game/Player.h"
-
+#include "../Editor/Editor.h"
 
 namespace engine
 {
@@ -16,7 +16,7 @@ namespace engine
     public:
         Renderer() = default;
 
-        void Draw(const game::Game &game);
+        void Draw(const game::Game *game, const editor::Editor &editor);
 
     private:
         void DrawSprite(const game::Renderable &renderable, const core::Transform &transform);

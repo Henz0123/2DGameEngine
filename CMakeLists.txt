@@ -34,6 +34,13 @@ add_executable(2DGameEngine main.cpp
         Engine/AssetPath.h
         Game/Tileset.cpp
         Game/Tileset.h
+        Editor/EditorAction.h
+        Editor/Editor.cpp
+        Editor/Editor.h
+        Editor/UI/EditorUI.cpp
+        Editor/UI/EditorUI.h
+        Editor/UI/Toolbar.cpp
+        Editor/UI/Toolbar.h
 )
 
 target_link_libraries(2DGameEngine PRIVATE raylib)
