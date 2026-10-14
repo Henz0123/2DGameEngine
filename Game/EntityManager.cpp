@@ -10,15 +10,13 @@ void game::EntityManager::Update(float dt)
 {
 
     for (auto & entity : m_entities) {
-        if (entity->GetID() == m_playerID) {
             entity->Update(dt);
-        }
     }
 }
 
 void game::EntityManager::CreatePlayer()
 {
-
+    
     m_entities.push_back(std::make_unique<Player>());
     m_playerID = GetLastID();
 }

@@ -5,7 +5,7 @@
 
 int main()
 {
-    engine::Application app(800, 600);
+    engine::Application app(1440, 960);
 
     app.Run();
 

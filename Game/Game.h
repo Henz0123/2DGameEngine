@@ -4,7 +4,6 @@
 
 #ifndef INC_2DGAMEENGINE_GAME_H
 #define INC_2DGAMEENGINE_GAME_H
-#include "Player.h"
 #include "../Core/Types.h"
 #include "EntityManager.h"
 
@@ -21,11 +20,10 @@ namespace game
 
         void Update(const core::Vector2 &moveDirection, float deltaTime);
 
-        void CreatePlayer();
+        void CreatePlayer() const;
 
 
     private:
-        Player* m_player;
         std::unique_ptr<EntityManager> m_entityManager;
 
     };

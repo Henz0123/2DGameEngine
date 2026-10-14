@@ -22,7 +22,7 @@ namespace game
     public:
         Player() : Entity(core::CharacterType::Player)
         {
-            m_transform = {{0.f, 0.f}, 0, {80.f, 80.f}};
+            m_transform = {{(GetScreenWidth() / 2.f) - 40.f, (GetScreenHeight() / 2.f) - 40.f}, 0, {80.f, 80.f}};
         }
         ;
         ~Player() override

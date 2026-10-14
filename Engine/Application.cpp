@@ -23,13 +23,13 @@ void engine::Application::Run()
         Draw();
     }
 
+    m_game.reset();
     CloseWindow();
 }
 
 void engine::Application::Update()
 {
     float deltaTime = GetFrameTime();
-    TraceLog(LOG_INFO, "DeltaTime: %f", deltaTime);
     const core::Vector2 moveDirection = m_input.HandleInput();
     m_game->Update(moveDirection, deltaTime);
 }

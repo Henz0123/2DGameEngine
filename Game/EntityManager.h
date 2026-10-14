@@ -32,9 +32,13 @@ namespace game
 
         const std::vector<std::unique_ptr<Entity>> &GetEntities() const { return m_entities; }
 
-        EntityID GetPlayerID() const
+        Player* GetPlayer()
         {
-            return m_playerID;
+            for (auto& entity : m_entities)
+            {
+                if (entity->GetID() == m_playerID)
+                    return dynamic_cast<Player *>(entity.get());
+            }
         }
 
     private:
