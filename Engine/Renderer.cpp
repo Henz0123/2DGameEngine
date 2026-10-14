@@ -9,8 +9,19 @@ void engine::Renderer::Draw(const game::Game &game)
 {
     const auto& entities = game.GetEntityManager()->GetEntities();
 
+    const auto& tilemap = game.GetTileMap();
+
     BeginDrawing();
     ClearBackground(BLACK);
+    if (tilemap)
+    {
+
+        for (int tileID : tilemap->GetTiles())
+        {
+
+        }
+    }
+
     for (const auto& entity : entities) {
         if (auto* renderable = dynamic_cast<game::Renderable*>(entity.get()))
             DrawSprite(*renderable, entity->GetTransform());

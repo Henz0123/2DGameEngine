@@ -6,6 +6,7 @@
 #define INC_2DGAMEENGINE_GAME_H
 #include "../Core/Types.h"
 #include "EntityManager.h"
+#include "Tilemap.h"
 
 namespace game
 {
@@ -13,9 +14,14 @@ namespace game
     public:
         Game();
 
-        const EntityManager* GetEntityManager() const
+        const EntityManager *GetEntityManager() const
         {
             return m_entityManager.get();
+        }
+
+        const Tilemap *GetTileMap() const
+        {
+            return m_tilemap.get();
         }
 
         void Update(const core::Vector2 &moveDirection, float deltaTime);
@@ -24,10 +30,13 @@ namespace game
 
         void CreateEnemy() const;
 
+        void FillTiles();
 
     private:
         std::unique_ptr<EntityManager> m_entityManager;
+        std::unique_ptr<Tilemap> m_tilemap;
 
+        Texture2D m_tileset{};
     };
 }
 

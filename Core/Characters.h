@@ -7,7 +7,7 @@
 
 namespace core
 {
-    enum class CharacterType {
+    enum class EntityType {
         Player,
         Enemy,
         InteractableNPC,

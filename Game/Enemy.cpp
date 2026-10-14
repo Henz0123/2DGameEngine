@@ -16,6 +16,11 @@ void game::Enemy::Move(const core::Vector2 &moveDir, float speed)
     auto &[x, y] = m_transform.position;
     x += moveDir.x * speed;
     y += moveDir.y * speed;
+
+    if (moveDir.x < 0)
+        m_isMovingLeft = true;
+    else if (moveDir.x > 0)
+        m_isMovingLeft = false;
 }
 
 core::Vector2 game::Enemy::CalculateAIPathing()

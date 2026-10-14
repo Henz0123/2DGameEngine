@@ -9,6 +9,7 @@
 #include "../Core/Shapes.h"
 #include "Entity.h"
 #include "Renderable.h"
+#include "../Engine/AssetPath.h"
 
 namespace core
 {
@@ -20,22 +21,27 @@ namespace game
 {
     class Player : public Entity, public Renderable {
     public:
-        Player(const core::Transform &tform) : Entity(core::CharacterType::Player)
+        Player(const core::Transform &tform)
+            : Entity(core::EntityType::Player)
         {
             m_transform = tform;
         }
         ;
+
         ~Player() override
         {
             UnloadTexture(m_sprite.texture);
         }
 
         void Update(float dt) override;
+
         void Move(const core::Vector2 &moveDirection, float speed);
 
-        void SetSprite(const char* filename) override
+        void SetSprite(const char *filename) override
         {
-            m_sprite.texture = LoadTexture(filename);
+            m_sprite.texture = LoadTexture(
+                    engine::AssetPath(filename).string().c_str()
+                    );
         }
 
 
@@ -49,7 +55,8 @@ namespace game
             return m_isMovingLeft;
         }
 
-        void SetMoveDirection(const core::Vector2& moveDir);
+        void SetMoveDirection(const core::Vector2 &moveDir);
+
     private:
         core::Sprite m_sprite;
         bool m_isMovingLeft = false;

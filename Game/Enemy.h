@@ -7,27 +7,33 @@
 #include "Entity.h"
 
 #include "Renderable.h"
+#include "../Engine/AssetPath.h"
 
 namespace game
 {
     class Enemy : public Entity, public Renderable {
     public:
-        Enemy(const core::Transform &tform, const char* filename) : Entity(core::CharacterType::Enemy)
+        Enemy(const core::Transform &tform, const char *filename)
+            : Entity(core::EntityType::Enemy)
         {
             m_transform = tform;
             SetSprite(filename);
         }
+
         ~Enemy() override
         {
             UnloadTexture(m_sprite.texture);
         }
 
         void Update(float dt) override;
+
         void Move(const core::Vector2 &moveDir, float speed);
 
         void SetSprite(const char *filename) override
         {
-            m_sprite.texture = LoadTexture(filename);
+            m_sprite.texture = LoadTexture(
+                    engine::AssetPath("Characters/pokemon-16bit-fixed.png").string().c_str()
+                    );
         }
 
         const core::Sprite &GetSprite() const override
@@ -40,7 +46,7 @@ namespace game
             return m_isMovingLeft;
         }
 
-        void SetTarget(const Entity* player)
+        void SetTarget(const Entity *player)
         {
             m_target = player;
         }
@@ -53,7 +59,7 @@ namespace game
         core::Vector2 m_moveDir{.x = 0.f, .y = 0.f};
         float m_speed = 200.f;
 
-        const Entity* m_target = nullptr;
+        const Entity *m_target = nullptr;
     };
 }
 

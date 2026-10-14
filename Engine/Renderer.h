@@ -18,6 +18,8 @@ namespace engine
 
     private:
         void DrawSprite(const game::Renderable& renderable, const core::Transform& transform);
+
+        void DrawTilemap();
     };
 }
 

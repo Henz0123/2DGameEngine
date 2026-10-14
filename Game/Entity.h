@@ -14,7 +14,7 @@ namespace game
     class Entity {
 
     public:
-        explicit Entity(core::CharacterType charType) :  m_charType(charType), m_id(idCounter++)
+        explicit Entity(core::EntityType charType) :  m_charType(charType), m_id(idCounter++)
         {
         }
         virtual ~Entity() = default;
@@ -22,7 +22,7 @@ namespace game
         Entity(const Entity&) = delete;
         Entity& operator=(const Entity&) = delete;
 
-        const core::CharacterType GetCharType() const { return m_charType; }
+        const core::EntityType GetCharType() const { return m_charType; }
 
         virtual void Update(float dt) = 0;
 
@@ -37,7 +37,7 @@ namespace game
         core::Transform m_transform;
 
     private:
-        core::CharacterType m_charType;
+        core::EntityType m_charType;
         EntityID m_id;
         inline static EntityID idCounter;
 
