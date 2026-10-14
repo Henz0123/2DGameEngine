@@ -33,7 +33,7 @@ void engine::Application::Update()
 {
     float dt = GetFrameTime();
 
-    auto action = m_editor->Update(m_game != nullptr);
+    auto action = m_editor->Update();
 
     switch (action)
     {
@@ -49,6 +49,8 @@ void engine::Application::Update()
         case editor::EditorAction::None:
             break;
     }
+
+    m_editor->SetPlaying(m_game != nullptr);
 
     if (m_game)
     {

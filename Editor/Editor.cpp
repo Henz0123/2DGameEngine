@@ -6,18 +6,27 @@
 #include <iostream>
 
 
-editor::EditorAction editor::Editor::Update(bool isPlaying)
+editor::EditorAction editor::Editor::Update()
 {
-   const auto& action = m_ui.Update(isPlaying);
+    const auto &action = m_ui.Update();
 
     return action;
 }
 
-void editor::Editor::Draw(bool isPlaying) const
+void editor::Editor::Draw() const
 {
-    if (!isPlaying)
-    {
-        DrawRectangleRec(button, DARKGRAY);
-        DrawText("Play", 35, 18, 20, WHITE);
-    }
+    m_ui.DrawToolbar();
+
+    if (!m_isPlaying)
+        m_ui.DrawTilePalette();
+}
+
+void editor::Editor::SetPlaying(bool isPlaying)
+{
+    m_isPlaying = isPlaying;
+}
+
+bool editor::Editor::IsPlaying() const
+{
+    return m_isPlaying;
 }

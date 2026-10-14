@@ -17,11 +17,31 @@ editor::EditorAction editor::ui::Toolbar::Update(bool isPlaying)
     return EditorAction::None;
 }
 
-void editor::ui::Toolbar::Draw(bool isPlaying) const
+void editor::ui::Toolbar::Draw() const
 {
     if (!isPlaying)
     {
-        DrawRectangleRec(button, DARKGRAY);
-        DrawText("Play", 35, 18, 20, WHITE);
+        DrawPlayButton(isPlaying);
+    } else
+    {
+        DrawPlayButton(isPlaying);
     }
+}
+
+void editor::ui::Toolbar::DrawPlayButton() const
+{
+    DrawRectangleRec(button, DARKGRAY);
+
+    const char *label = isPlaying ? "Stop" : "Play";
+    int fontSize = 20;
+
+    float textX = button.x +
+                  (button.width - MeasureText(label, fontSize)) / 2.0f;
+
+    float textY = button.y +
+                  (button.height - fontSize) / 2.0f;
+
+    DrawRectangleRec(button, DARKGRAY);
+    DrawText(label, static_cast<int>(textX),
+             static_cast<int>(textY), fontSize, WHITE);
 }

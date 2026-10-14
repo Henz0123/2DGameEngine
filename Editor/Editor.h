@@ -14,13 +14,18 @@ namespace editor
 {
     class Editor {
     public:
-        EditorAction Update(bool isPlaying);
+        EditorAction Update();
 
-        void Draw(bool isPlaying) const;
+        void Draw() const;
+
+        void SetPlaying(bool isPlaying);
+        bool IsPlaying() const;
+
     private:
 
         ui::EditorUI m_ui;
-   Rectangle button{10, 10, 100, 35};
+
+        bool m_isPlaying = false;
     };
 }
 

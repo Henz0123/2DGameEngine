@@ -4,9 +4,16 @@
 
 #include "EditorUI.h"
 
-editor::EditorAction editor::ui::EditorUI::Update(bool isPlaying)
+editor::ui::EditorUI::EditorUI(const Editor &editor) : m_editor(editor) {}
+
+editor::EditorAction editor::ui::EditorUI::Update()
 {
-    const auto &action = m_toolbar.Update(isPlaying);
+    const auto &action = m_toolbar.Update();
 
     return action;
+}
+
+void editor::ui::EditorUI::Draw()
+{
+    m_toolbar.Draw();
 }

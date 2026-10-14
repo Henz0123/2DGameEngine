@@ -7,12 +7,24 @@
 #include "Toolbar.h"
 #include "raylib.h"
 
+namespace editor
+{
+    class Editor;
+}
+
 namespace editor::ui
 {
     class EditorUI {
     public:
-        EditorAction Update(bool isPlaying);
+        explicit EditorUI(const Editor& editor);
+
+
+        EditorAction Update();
+
+       void Draw();
+
     private:
+        const Editor& m_editor;
         Toolbar m_toolbar;
     };
 }
