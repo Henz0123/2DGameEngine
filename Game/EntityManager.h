@@ -28,7 +28,7 @@ namespace game
             return it->GetID();
         }
         void CreatePlayer(const core::Transform &tform);
-        void CreateEnemy(const core::Transform &tform, const char* filename);
+        Enemy& CreateEnemy(const core::Transform &tform, const char* filename);
 
         Entity* GetEntity(EntityID id) const;
 

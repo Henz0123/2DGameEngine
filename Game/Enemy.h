@@ -5,6 +5,7 @@
 #ifndef INC_2DGAMEENGINE_ENEMY_H
 #define INC_2DGAMEENGINE_ENEMY_H
 #include "Entity.h"
+
 #include "Renderable.h"
 
 namespace game
@@ -39,11 +40,20 @@ namespace game
             return m_isMovingLeft;
         }
 
+        void SetTarget(const Entity* player)
+        {
+            m_target = player;
+        }
+
+        core::Vector2 CalculateAIPathing();
+
     private:
         core::Sprite m_sprite;
         bool m_isMovingLeft = false;
         core::Vector2 m_moveDir{.x = 0.f, .y = 0.f};
         float m_speed = 200.f;
+
+        const Entity* m_target = nullptr;
     };
 }
 

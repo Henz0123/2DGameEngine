@@ -5,7 +5,8 @@
 #include "Game.h"
 #include "../Core/Types.h"
 
-game::Game::Game() : m_entityManager(std::make_unique<EntityManager>())
+game::Game::Game()
+    : m_entityManager(std::make_unique<EntityManager>())
 {
     CreatePlayer();
 
@@ -13,7 +14,6 @@ game::Game::Game() : m_entityManager(std::make_unique<EntityManager>())
     player->SetSprite("../Assets/megaman-8bit.png");
 
     CreateEnemy();
-
 }
 
 void game::Game::Update(const core::Vector2 &moveDirection, float deltaTime)
@@ -31,6 +31,8 @@ void game::Game::CreatePlayer() const
 
 void game::Game::CreateEnemy() const
 {
-    core::Transform tform = {{20.f, 20.f}, 0.f, {60.f, 60.f}};
-    m_entityManager->CreateEnemy(tform, "../Assets/pokemon-16bit.png");
+    core::Transform tform = {{20.f, 20.f}, 0.f, {80.f, 80.f}};
+    Enemy &enemy = m_entityManager->CreateEnemy(tform, "../Assets/pokemon-16bit-fixed.png");
+
+    enemy.SetTarget(m_entityManager->GetPlayer());
 }

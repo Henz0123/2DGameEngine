@@ -21,13 +21,17 @@ void game::EntityManager::CreatePlayer(const core::Transform &tform)
     m_entities.push_back(std::make_unique<Player>(tform));
     m_playerID = GetLastID();
 }
-void game::EntityManager::CreateEnemy(const core::Transform &tform, const char* filename)
+game::Enemy &game::EntityManager::CreateEnemy(const core::Transform &tform, const char* filename)
 {
-    m_entities.push_back(std::make_unique<Enemy>(tform, filename));
+    auto enemy = std::make_unique<Enemy>(tform, filename);
+    Enemy& ref = *enemy;
 
+   m_entities.push_back(std::move(enemy));
+
+    return ref;
 }
 
-game::Entity * game::EntityManager::GetEntity(EntityID id) const
+game::Entity *game::EntityManager::GetEntity(EntityID id) const
 {
     for (auto & entity : m_entities) {
         if (entity->GetID() == id)
