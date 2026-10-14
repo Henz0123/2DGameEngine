@@ -28,7 +28,7 @@ void engine::Renderer::Draw(const game::Game *game, const editor::Editor &editor
         }
     }
 
-    editor.Draw(game != nullptr);
+    editor.Draw();
 
     EndDrawing();
 }

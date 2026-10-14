@@ -5,6 +5,10 @@
 #include "Editor.h"
 #include <iostream>
 
+editor::Editor::Editor() : m_ui(*this)
+{
+
+}
 
 editor::EditorAction editor::Editor::Update()
 {
@@ -15,10 +19,7 @@ editor::EditorAction editor::Editor::Update()
 
 void editor::Editor::Draw() const
 {
-    m_ui.DrawToolbar();
-
-    if (!m_isPlaying)
-        m_ui.DrawTilePalette();
+    m_ui.Draw();
 }
 
 void editor::Editor::SetPlaying(bool isPlaying)

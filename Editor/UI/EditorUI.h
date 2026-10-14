@@ -6,6 +6,7 @@
 #define INC_2DGAMEENGINE_EDITORUI_H
 #include "Toolbar.h"
 #include "raylib.h"
+#include "TilePalette.h"
 
 namespace editor
 {
@@ -21,11 +22,12 @@ namespace editor::ui
 
         EditorAction Update();
 
-       void Draw();
+       void Draw() const;
 
     private:
         const Editor& m_editor;
         Toolbar m_toolbar;
+        TilePalette m_tilepalette;
     };
 }
 

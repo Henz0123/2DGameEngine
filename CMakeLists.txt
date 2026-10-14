@@ -41,6 +41,8 @@ add_executable(2DGameEngine main.cpp
         Editor/UI/EditorUI.h
         Editor/UI/Toolbar.cpp
         Editor/UI/Toolbar.h
+        Editor/UI/TilePalette.cpp
+        Editor/UI/TilePalette.h
 )
 
 target_link_libraries(2DGameEngine PRIVATE raylib)

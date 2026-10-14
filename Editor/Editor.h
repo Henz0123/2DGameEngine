@@ -10,10 +10,12 @@
 #include "raylib.h"
 #include "UI/EditorUI.h"
 
+
 namespace editor
 {
     class Editor {
     public:
+        Editor();
         EditorAction Update();
 
         void Draw() const;
@@ -22,7 +24,6 @@ namespace editor
         bool IsPlaying() const;
 
     private:
-
         ui::EditorUI m_ui;
 
         bool m_isPlaying = false;

@@ -23,6 +23,12 @@ namespace core
     struct Sprite {
         Texture2D texture = {};
     };
+
+    struct PaletteEntry {
+        int tileID;
+        Color color;
+        const char* label;
+    };
 }
 
 #endif //INC_2DGAMEENGINE_OBJECTS_H

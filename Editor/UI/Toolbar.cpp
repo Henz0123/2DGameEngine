@@ -17,18 +17,12 @@ editor::EditorAction editor::ui::Toolbar::Update(bool isPlaying)
     return EditorAction::None;
 }
 
-void editor::ui::Toolbar::Draw() const
+void editor::ui::Toolbar::Draw(bool isPlaying) const
 {
-    if (!isPlaying)
-    {
-        DrawPlayButton(isPlaying);
-    } else
-    {
-        DrawPlayButton(isPlaying);
-    }
+    DrawPlayButton(isPlaying);
 }
 
-void editor::ui::Toolbar::DrawPlayButton() const
+void editor::ui::Toolbar::DrawPlayButton(bool isPlaying) const
 {
     DrawRectangleRec(button, DARKGRAY);
 

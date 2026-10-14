@@ -11,10 +11,10 @@ namespace editor::ui
 {
     class Toolbar {
     public:
-        EditorAction Update();
-        void Draw() const;
+        EditorAction Update(bool isPlaying);
+        void Draw(bool isPlaying) const;
     private:
-        void DrawPlayButton() const;
+        void DrawPlayButton(bool isPlaying) const;
         Rectangle button{(GetScreenWidth()-100)/2.f, 10, 100, 35};
     };
 }
