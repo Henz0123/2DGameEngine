@@ -11,6 +11,9 @@ game::Game::Game() : m_entityManager(std::make_unique<EntityManager>())
 
     auto player = m_entityManager->GetPlayer();
     player->SetSprite("../Assets/megaman-8bit.png");
+
+    CreateEnemy();
+
 }
 
 void game::Game::Update(const core::Vector2 &moveDirection, float deltaTime)
@@ -22,5 +25,12 @@ void game::Game::Update(const core::Vector2 &moveDirection, float deltaTime)
 
 void game::Game::CreatePlayer() const
 {
-    m_entityManager->CreatePlayer();
+    core::Transform tform = {{(GetScreenWidth() / 2.f) - 40.f, (GetScreenHeight() / 2.f) - 40.f}, 0.f, {80.f, 80.f}};
+    m_entityManager->CreatePlayer(tform);
+}
+
+void game::Game::CreateEnemy() const
+{
+    core::Transform tform = {{20.f, 20.f}, 0.f, {60.f, 60.f}};
+    m_entityManager->CreateEnemy(tform, "../Assets/pokemon-16bit.png");
 }

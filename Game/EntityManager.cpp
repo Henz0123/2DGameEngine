@@ -4,7 +4,8 @@
 
 #include "EntityManager.h"
 
-#include "Game.h"
+
+
 
 void game::EntityManager::Update(float dt)
 {
@@ -14,13 +15,17 @@ void game::EntityManager::Update(float dt)
     }
 }
 
-void game::EntityManager::CreatePlayer()
+void game::EntityManager::CreatePlayer(const core::Transform &tform)
 {
-    
-    m_entities.push_back(std::make_unique<Player>());
+
+    m_entities.push_back(std::make_unique<Player>(tform));
     m_playerID = GetLastID();
 }
-void game::EntityManager::CreateEnemy() {}
+void game::EntityManager::CreateEnemy(const core::Transform &tform, const char* filename)
+{
+    m_entities.push_back(std::make_unique<Enemy>(tform, filename));
+
+}
 
 game::Entity * game::EntityManager::GetEntity(EntityID id) const
 {

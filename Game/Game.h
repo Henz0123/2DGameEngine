@@ -22,6 +22,8 @@ namespace game
 
         void CreatePlayer() const;
 
+        void CreateEnemy() const;
+
 
     private:
         std::unique_ptr<EntityManager> m_entityManager;

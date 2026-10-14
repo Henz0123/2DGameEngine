@@ -24,6 +24,8 @@ add_executable(2DGameEngine main.cpp
         Game/Entity.cpp
         Game/Entity.h
         Game/Renderable.h
+        Game/Enemy.cpp
+        Game/Enemy.h
 )
 
 target_link_libraries(2DGameEngine PRIVATE raylib)

@@ -20,9 +20,9 @@ namespace game
 {
     class Player : public Entity, public Renderable {
     public:
-        Player() : Entity(core::CharacterType::Player)
+        Player(const core::Transform &tform) : Entity(core::CharacterType::Player)
         {
-            m_transform = {{(GetScreenWidth() / 2.f) - 40.f, (GetScreenHeight() / 2.f) - 40.f}, 0, {80.f, 80.f}};
+            m_transform = tform;
         }
         ;
         ~Player() override

@@ -1,0 +1,51 @@
+//
+// Created by isak- on 10/14/2026.
+//
+
+#ifndef INC_2DGAMEENGINE_ENEMY_H
+#define INC_2DGAMEENGINE_ENEMY_H
+#include "Entity.h"
+#include "Renderable.h"
+
+namespace game
+{
+    class Enemy : public Entity, public Renderable {
+    public:
+        Enemy(const core::Transform &tform, const char* filename) : Entity(core::CharacterType::Enemy)
+        {
+            m_transform = tform;
+            SetSprite(filename);
+        }
+        ~Enemy() override
+        {
+            UnloadTexture(m_sprite.texture);
+        }
+
+        void Update(float dt) override;
+        void Move(const core::Vector2 &moveDir, float speed);
+
+        void SetSprite(const char *filename) override
+        {
+            m_sprite.texture = LoadTexture(filename);
+        }
+
+        const core::Sprite &GetSprite() const override
+        {
+            return m_sprite;
+        }
+
+        const bool &IsFacingLeft() const override
+        {
+            return m_isMovingLeft;
+        }
+
+    private:
+        core::Sprite m_sprite;
+        bool m_isMovingLeft = false;
+        core::Vector2 m_moveDir{.x = 0.f, .y = 0.f};
+        float m_speed = 200.f;
+    };
+}
+
+
+#endif //INC_2DGAMEENGINE_ENEMY_H
