@@ -9,17 +9,22 @@
 #include "../Game/Game.h"
 #include "../Game/Player.h"
 
+
 namespace engine
 {
     class Renderer {
     public:
         Renderer() = default;
-        void Draw(const game::Game& game);
+
+        void Draw(const game::Game &game);
 
     private:
-        void DrawSprite(const game::Renderable& renderable, const core::Transform& transform);
+        void DrawSprite(const game::Renderable &renderable, const core::Transform &transform);
 
-        void DrawTilemap();
+        void DrawTilemap(
+                const game::Tilemap &tilemap,
+                const game::Tileset &tileset
+                );
     };
 }
 

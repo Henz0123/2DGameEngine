@@ -14,10 +14,7 @@ const core::Vector2 & game::Tilemap::GetOriginPoint() const
     return m_origin;
 }
 
-const core::Vector2 &game::Tilemap::GetSize() const
-{
-    return {static_cast<float>(m_width), static_cast<float>(m_height)};
-}
+
 
 void game::Tilemap::SetTile(int x, int y, int tileID)
 {

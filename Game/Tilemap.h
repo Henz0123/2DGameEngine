@@ -20,7 +20,8 @@ namespace game
 
         void SetTile(int x, int y, int tileID);
 
-        const core::Vector2 &GetSize() const;
+        int GetWidth() const { return m_width; }
+        int GetHeight() const { return m_height; }
 
         const core::Vector2 &GetOriginPoint() const;
 

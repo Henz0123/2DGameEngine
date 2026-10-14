@@ -7,6 +7,7 @@
 #include "../Core/Types.h"
 #include "EntityManager.h"
 #include "Tilemap.h"
+#include "Tileset.h"
 
 namespace game
 {
@@ -23,6 +24,10 @@ namespace game
         {
             return m_tilemap.get();
         }
+        const Tileset* GetTileset() const
+        {
+            return m_tileset.get();
+        }
 
         void Update(const core::Vector2 &moveDirection, float deltaTime);
 
@@ -36,7 +41,7 @@ namespace game
         std::unique_ptr<EntityManager> m_entityManager;
         std::unique_ptr<Tilemap> m_tilemap;
 
-        Texture2D m_tileset{};
+        std::unique_ptr<Tileset> m_tileset;
     };
 }
 

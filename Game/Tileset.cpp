@@ -10,9 +10,14 @@ game::Tileset::Tileset(const std::string &filename, int tWidth, int tHeight)
     : m_texture(LoadTexture(engine::AssetPath(filename).string().c_str())),
       m_tileWidth(tWidth),
       m_tileHeight(tHeight)
-{}
+{
+    GenerateSourceRects();
+}
 
-game::Tileset::~Tileset() {}
+game::Tileset::~Tileset()
+{
+    UnloadTexture(m_texture);
+}
 
 const Rectangle *game::Tileset::GetSourceRect(int tileID) const
 {

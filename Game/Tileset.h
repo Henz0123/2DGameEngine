@@ -15,6 +15,8 @@ namespace game
     public:
         explicit Tileset(const std::string& filename, int tWidth, int tHeight);
         ~Tileset();
+        Tileset(const Tileset&) = delete;
+        Tileset& operator=(const Tileset&) = delete;
 
         const Rectangle* GetSourceRect(int tileID) const;
         const Texture2D& GetTexture() const;
